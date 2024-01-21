@@ -5,6 +5,7 @@ import signout from '@/firebase/auth/signout';
 import {FieldType} from '@/interfaces';
 import axios from 'axios';
 import Image from 'next/image';
+import {useRouter} from 'next/navigation';
 import React, {ChangeEvent, FormEvent, useEffect, useState} from 'react';
 
 function UserPage({photo}: {photo: string | null}) {
@@ -18,9 +19,13 @@ function UserPage({photo}: {photo: string | null}) {
 	const [errorMessage, setErrorMessage] = useState('');
 	const [successMessage, setSuccessMessage] = useState('');
 	const [isNew, setIsNew] = useState(true);
+	const router = useRouter();
 
 	useEffect(() => {
 		async function getFormData() {
+			if (!email) {
+				return router.replace('/signin');
+			}
 			const response = await axios.get(`${BASE_API_URL}/api/v1/form/${email}`);
 			if (response.data.email === email) {
 				setFormData(response.data);

@@ -197,6 +197,7 @@ const User: FC<{user: UserType}> = ({user}) => {
 								</button>
 							)}
 						</div>
+						<p className="text-green-500 mt-5">{errorMessage}</p>
 						<p className="text-green-500 mt-5">{successMessage}</p>
 					</div>
 				</>

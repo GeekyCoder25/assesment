@@ -23,6 +23,7 @@ export default function Home() {
 			if (response.data.email !== email) {
 				return router.replace('/signin');
 			}
+			console.log(response.data);
 			if (response.data.role === 'admin') {
 				setIsAdmin(true);
 			}
